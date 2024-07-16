@@ -18,14 +18,15 @@
 name: deploy-site
 
 on:
-  push:
-    branches:
-      - "2.x"
-      - "2.x-site-pro"
-      - "release/2*"
-    paths-ignore:
-      - "**.md"
-      - "**.txt"
+  workflow_dispatch:
+#  push:
+#    branches:
+#      - "2.x"
+#      - "2.x-site-pro"
+#      - "release/2*"
+#    paths-ignore:
+#      - "**.md"
+#      - "**.txt"
 
 permissions: read-all
 
@@ -33,7 +34,7 @@ jobs:
 
   deploy-site-stg:
     if: github.repository == 'apache/logging-log4j2' && github.ref_name == '2.x'
-    uses: apache/logging-parent/.github/workflows/deploy-site-reusable.yaml@develocity
+    uses: apache/logging-parent/.github/workflows/deploy-site-reusable.yaml@09f79193b95adf4b99de39c110f00efc4187e3ba
     # Secrets for committing the generated site
     secrets:
       GPG_SECRET_KEY: ${{ secrets.LOGGING_GPG_SECRET_KEY }}
@@ -53,7 +54,7 @@ jobs:
 
   deploy-site-pro:
     if: github.repository == 'apache/logging-log4j2' && github.ref_name == '2.x-site-pro'
-    uses: apache/logging-parent/.github/workflows/deploy-site-reusable.yaml@develocity
+    uses: apache/logging-parent/.github/workflows/deploy-site-reusable.yaml@09f79193b95adf4b99de39c110f00efc4187e3ba
     # Secrets for committing the generated site
     secrets:
       GPG_SECRET_KEY: ${{ secrets.LOGGING_GPG_SECRET_KEY }}
@@ -84,7 +85,7 @@ jobs:
 
   deploy-site-rel:
     needs: export-version
-    uses: apache/logging-parent/.github/workflows/deploy-site-reusable.yaml@develocity
+    uses: apache/logging-parent/.github/workflows/deploy-site-reusable.yaml@09f79193b95adf4b99de39c110f00efc4187e3ba
     # Secrets for committing the generated site
     secrets:
       GPG_SECRET_KEY: ${{ secrets.LOGGING_GPG_SECRET_KEY }}
