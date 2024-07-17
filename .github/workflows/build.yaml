@@ -27,7 +27,7 @@ jobs:
   build:
     if: github.actor != 'dependabot[bot]'
     # Temporary use `develocity` branch
-    uses: jprinet/logging-parent/.github/workflows/build-reusable.yaml@09f79193b95adf4b99de39c110f00efc4187e3ba
+    uses: jprinet/logging-parent/.github/workflows/build-reusable.yaml@74c702cdeb706c5253effffdb36698fef6d09bf5
     secrets:
       DV_ACCESS_TOKEN: ${{ ! startsWith(github.refname, 'release/') && secrets.GE_ACCESS_TOKEN }}
     with:
