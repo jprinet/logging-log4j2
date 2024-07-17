@@ -23,6 +23,8 @@ on:
       - "2.x"
       - "release/2*"
   pull_request:
+  workflow_dispatch:
+
 
 permissions: read-all
 
@@ -31,7 +33,7 @@ jobs:
   build:
     if: github.actor != 'dependabot[bot]'
     # Temporary use `develocity` branch
-    uses: apache/logging-parent/.github/workflows/build-reusable.yaml@develocity
+    uses: jprinet/logging-parent/.github/workflows/build-reusable.yaml@f09dfdd6dc07d682b07b4e24eba3dde167e93726
     secrets:
       DV_ACCESS_TOKEN: ${{ ! startsWith(github.refname, 'release/') && secrets.GE_ACCESS_TOKEN }}
     with:
